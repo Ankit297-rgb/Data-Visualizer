@@ -107,9 +107,16 @@ if uploaded_file:
         # Wordcloud Generation (for text-based columns)
         if filter_column and filter_column != x_axis and filter_column != y_axis:
             st.markdown("<h2 style='color: #9B59B6;'>🗣️ Wordcloud Visualization</h2>", unsafe_allow_html=True)
-            text_data = " ".join(df[filter_column].astype(str).tolist())
-            wordcloud = WordCloud(width=800, height=400, background_color="white").generate(text_data)
-            st.image(wordcloud.to_array(), use_column_width=True)
+            
+            # Get text data from the selected filter column and remove empty or NaN values
+            text_data = " ".join(df[filter_column].dropna().astype(str).tolist())
+            
+            # Ensure that text_data is not empty before generating the word cloud
+            if text_data.strip():
+                wordcloud = WordCloud(width=800, height=400, background_color="white").generate(text_data)
+                st.image(wordcloud.to_array(), use_column_width=True)
+            else:
+                st.warning("⚠️ No valid text data available for word cloud generation.")
 
         # Add a Download Button for Processed Data
         st.sidebar.markdown("### 📥 Download Processed Data")
