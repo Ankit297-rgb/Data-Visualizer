@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from wordcloud import WordCloud
+import re
 
 # Set Streamlit Page Configuration (Title and Layout)
 st.set_page_config(page_title="📊 Interactive Data Visualization Tool", layout="wide")
@@ -110,9 +111,9 @@ if uploaded_file:
             
             # Get text data from the selected filter column and remove empty or NaN values
             text_data = " ".join(df[filter_column].dropna().astype(str).tolist())
-            
-            # Ensure that text_data is not empty before generating the word cloud
-            if text_data.strip():
+
+            # Ensure that text_data has at least one valid word by removing non-alphabetic characters and checking word count
+            if len(re.findall(r'\w+', text_data)) > 0:
                 wordcloud = WordCloud(width=800, height=400, background_color="white").generate(text_data)
                 st.image(wordcloud.to_array(), use_column_width=True)
             else:
