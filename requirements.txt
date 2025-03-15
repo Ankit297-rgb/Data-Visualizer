@@ -5,6 +5,3 @@ seaborn
 plotly
 wordcloud
 bcrypt
-json
-os
-BytesIO
