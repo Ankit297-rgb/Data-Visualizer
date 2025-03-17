@@ -8,7 +8,7 @@ import bcrypt
 from io import BytesIO
 
 
-saved_data_dir = "C:\\Users\\chatt\\Downloads\\DATABASE"
+saved_data_dir = "saved_file"
 
 
 if not os.path.exists(saved_data_dir):
