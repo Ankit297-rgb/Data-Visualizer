@@ -4,4 +4,5 @@ matplotlib
 seaborn
 plotly
 wordcloud
-bcrypt
+scikit-learn
+numpy
