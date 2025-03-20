@@ -72,7 +72,7 @@ if uploaded_file:
                     ax_cm.set_ylabel("Actual")
                     ax_cm.set_title("Confusion Matrix")
                     st.pyplot(fig_cm)
-
+ 
                     buf_cm = BytesIO()
                     fig_cm.savefig(buf_cm, format="png")
                     st.download_button("Download Confusion Matrix Heatmap", data=buf_cm.getvalue(), file_name="confusion_matrix.png", mime="image/png")
@@ -124,3 +124,4 @@ if uploaded_file:
     results_df = pd.DataFrame({"Actual": y_test, "Predicted": y_pred})
     csv_data = results_df.to_csv(index=False).encode('utf-8')
     st.download_button("Download Predictions CSV", data=csv_data, file_name="predictions.csv", mime="text/csv")
+
